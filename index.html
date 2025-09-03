@@ -3,209 +3,70 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Painel • Estrutura do Print (3 fotos + YouTube)</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Patrícia e Sérgio 💖</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    :root{--bg:#0c0a13;--text:#fff;--muted:#c9c5d6;--line:#2b2a3f;--brand1:#9b87ff;--brand2:#ff77a9;--card:#161624;--shadow:0 8px 28px rgba(155,135,255,.18),0 10px 36px rgba(255,119,169,.14)}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;color:var(--text);background:
-      radial-gradient(1100px 520px at 10% -10%,rgba(155,135,255,.16),transparent 60%),
-      radial-gradient(900px 400px at 110% 10%,rgba(255,119,169,.12),transparent 60%),
-      linear-gradient(#0b0a13,#0f0d19)}
-    .wrap{max-width:1100px;margin:0 auto;padding:0 clamp(14px,3vw,24px)}
-
-    header{position:sticky;top:0;z-index:10;background:linear-gradient(180deg,rgba(11,10,19,.9),rgba(11,10,19,.6));backdrop-filter:saturate(160%) blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
-    .head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
-    h1{margin:0;font-size:clamp(16px,2.2vw,18px)}
-    .badge{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--brand1),var(--brand2));box-shadow:var(--shadow)}
-    .btn{border:0;border-radius:12px;padding:10px 14px;font-weight:800;cursor:pointer;color:#fff;background:#26263a}
-    .btn-primary{background:linear-gradient(135deg,var(--brand1),var(--brand2));box-shadow:var(--shadow)}
-
-    main{position:relative}
-    .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;padding:18px 0}
-    @media (max-width:940px){.grid{grid-template-columns:1fr}}
-
-    .panel{background:linear-gradient(180deg,#191928,#141422);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
-    .panel header{padding:12px 14px;border-bottom:1px solid var(--line);font-weight:800}
-    .panel .bd{padding:14px}
-
-    input[type=text],input[type=url],textarea{width:100%;background:#1b1b2a;color:#fff;border:1px solid #2f2f46;border-radius:10px;padding:10px 12px}
-    textarea{min-height:120px;resize:vertical}
-    .small{color:#b6b0c6;font-size:12px}
-
-    .slots{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    @media (max-width:700px){.slots{grid-template-columns:1fr}}
-    .slot{background:var(--card);border:1px dashed #3a3956;border-radius:14px;position:relative;overflow:hidden}
-    .slot h4{margin:8px 10px;font-size:13px;color:#eae6ff}
-    .drop{margin:10px;border:1px dashed #4a4870;border-radius:12px;padding:10px;text-align:center;color:#bfb8d3}
-    .thumb{display:none;width:100%;height:180px;object-fit:cover;border-top:1px solid #2b2a3f}
-    .rm{position:absolute;top:8px;right:8px;background:#ff4d6d;color:#fff;border:0;border-radius:999px;width:26px;height:26px;display:none}
-
-    /* Preview phone */
-    .phone{position:relative;width:260px;max-width:78vw;aspect-ratio:9/18;border-radius:28px;background:linear-gradient(160deg,#2a2838,#171625);border:1px solid rgba(255,255,255,.08);box-shadow:0 30px 60px rgba(0,0,0,.42);overflow:hidden;margin:0 auto}
-    .notch{position:absolute;top:6px;left:50%;transform:translateX(-50%);width:110px;height:18px;background:#0f0e18;border-radius:0 0 12px 12px;border:1px solid rgba(255,255,255,.08)}
-    .screen{position:absolute;inset:10px;border-radius:22px;background:linear-gradient(180deg,#0d0c18,#141328);overflow:auto}
-    .title{font-weight:800;font-size:20px;text-align:center;margin:18px 8px 10px;background:linear-gradient(90deg,var(--brand1),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .photo{display:block;width:84%;max-width:84%;margin:0 auto;border-radius:14px;box-shadow:0 10px 22px rgba(0,0,0,.5)}
-    .section{padding:14px 14px 10px}
-    .section h3{margin:10px 0 8px;font-size:16px}
-    .ytbox{padding:0 12px 18px}
-    .ytbox iframe{width:100%;height:180px;border:0;border-radius:12px}
-
-    /* Hearts falling */
+    body{margin:0;background:#0c0a13;color:#fff;font-family:'Inter',sans-serif;text-align:center}
+    h1{margin:20px 0;font-size:24px;font-weight:800;background:linear-gradient(90deg,#9b87ff,#ff77a9);
+       -webkit-background-clip:text;background-clip:text;color:transparent}
+    .photo{display:block;width:88%;margin:0 auto 20px;border-radius:14px;box-shadow:0 10px 22px rgba(0,0,0,.5)}
+    .section{padding:14px;text-align:left;max-width:600px;margin:0 auto}
+    .section h3{margin:10px 0 8px;font-size:18px}
+    .ytbox iframe{width:100%;height:220px;border:0;border-radius:12px}
     #hearts{position:fixed;inset:0;pointer-events:none}
-    .heart{position:fixed;top:-10vh;font-size:var(--sz,18px);transform:translateY(-10vh) rotate(0);filter:drop-shadow(0 8px 12px rgba(255,77,109,.25));animation:fall var(--du,9s) linear forwards,sway var(--du,9s) ease-in-out infinite;opacity:.95}
+    .heart{position:fixed;top:-10vh;font-size:var(--sz,18px);
+      transform:translateY(-10vh) rotate(0);filter:drop-shadow(0 8px 12px rgba(255,77,109,.25));
+      animation:fall var(--du,9s) linear forwards,sway var(--du,9s) ease-in-out infinite;opacity:.95}
     @keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}
     @keyframes sway{0%,100%{margin-left:-10px}50%{margin-left:10px}}
-
-    footer{padding:18px 0;text-align:center;color:#b9b3c8}
   </style>
 </head>
 <body>
   <div id="hearts"></div>
-  <header>
-    <div class="wrap head">
-      <div style="display:flex;align-items:center;gap:10px"><div class="badge">💜</div><h1>Painel • Estrutura do Print</h1></div>
-      <button class="btn btn-primary" id="btnDownload">Baixar Mini Site (.html)</button>
+
+  <h1>Patrícia e Sérgio</h1>
+
+  <!-- FOTO 1 (capa) -->
+  <img src="foto1.jpg" alt="Foto 1" class="photo">
+
+  <!-- FOTO 2 -->
+  <img src="foto2.jpg" alt="Foto 2" class="photo">
+
+  <!-- FOTO 3 -->
+  <img src="foto3.jpg" alt="Foto 3" class="photo">
+
+  <div class="section">
+    <h3>Nossa mensagem:</h3>
+    <p>
+      Quando você apareceu no meu caminho, você era a luz que eu precisava para ver
+      as coisas boas ao meu redor. Prometo te amar para sempre e te fazer feliz
+      a cada segundo da sua vida.
+    </p>
+  </div>
+
+  <div class="section">
+    <h3>Nossa Música:</h3>
+    <div class="ytbox">
+      <!-- LINK DO YOUTUBE AQUI -->
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1&mute=1&playsinline=1&loop=1&playlist=VIDEO_ID" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
-  </header>
-
-  <main class="wrap">
-    <div class="grid">
-      <!-- Painel de edição -->
-      <div class="panel">
-        <header>Preencha aqui (3 fotos + link do YouTube)</header>
-        <div class="bd" style="display:grid;gap:14px">
-          <div>
-            <label class="small">Nomes/Frase (aparece no topo)</label>
-            <input id="names" type="text" placeholder="Ex.: Patrícia e Sérgio"/>
-          </div>
-          <div>
-            <label class="small">Nossa mensagem</label>
-            <textarea id="msg" placeholder="Digite uma mensagem romântica..."></textarea>
-          </div>
-
-          <div>
-            <div class="small" style="margin-bottom:6px">Fotos — <strong>exatamente 3</strong> (como no print). Identifique cada local abaixo:</div>
-            <div class="slots">
-              <div class="slot" data-i="0">
-                <h4>Foto 1 (capa)</h4>
-                <label class="drop">Solte aqui ou escolha <input id="file0" type="file" accept="image/*" style="display:inline"></label>
-                <img id="thumb0" class="thumb" alt="Foto 1"/>
-                <button class="rm" id="rm0">✕</button>
-              </div>
-              <div class="slot" data-i="1">
-                <h4>Foto 2</h4>
-                <label class="drop">Solte aqui ou escolha <input id="file1" type="file" accept="image/*" style="display:inline"></label>
-                <img id="thumb1" class="thumb" alt="Foto 2"/>
-                <button class="rm" id="rm1">✕</button>
-              </div>
-              <div class="slot" data-i="2">
-                <h4>Foto 3</h4>
-                <label class="drop">Solte aqui ou escolha <input id="file2" type="file" accept="image/*" style="display:inline"></label>
-                <img id="thumb2" class="thumb" alt="Foto 3"/>
-                <button class="rm" id="rm2">✕</button>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <label class="small">Link do YouTube (será reproduzido automaticamente)</label>
-            <input id="yt" type="url" placeholder="https://youtu.be/ID ou https://www.youtube.com/watch?v=ID"/>
-            <div class="small">Observação: por política dos navegadores móveis, o autoplay começa <strong>mudo</strong>. O usuário pode ativar o som no player.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Preview -->
-      <div class="panel">
-        <header>Prévia do mini site (como no print)</header>
-        <div class="bd">
-          <div class="phone">
-            <div class="notch" aria-hidden="true"></div>
-            <div class="screen" id="screen">
-              <div class="title" id="title">Amor em Códigos</div>
-              <img id="mainPhoto" class="photo" alt="foto">
-              <div class="section">
-                <h3>Nossa mensagem:</h3>
-                <div id="msgOut" class="small" style="font-size:14px;color:#eee;line-height:1.6"></div>
-              </div>
-              <div class="section">
-                <h3>Nossa Música:</h3>
-                <div class="ytbox"><iframe id="ytFrame" title="YouTube" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <footer>© <span id="year"></span> Amor em Códigos</footer>
+  </div>
 
   <script>
-    const $ = (s,c=document)=>c.querySelector(s);
-    const files=[$('#file0'),$('#file1'),$('#file2')];
-    const thumbs=[$('#thumb0'),$('#thumb1'),$('#thumb2')];
-    const rms=[$('#rm0'),$('#rm1'),$('#rm2')];
-    const title=$('#title'); const msgOut=$('#msgOut'); const mainPhoto=$('#mainPhoto');
-    const names=$('#names'); const msg=$('#msg'); const yt=$('#yt'); const ytFrame=$('#ytFrame');
-
-    const state={photos:[null,null,null], msg:'', names:'', ytid:''};
-
-    function fileToDataURL(file){return new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(file);});}
-    function videoIdFromYouTube(url){try{const u=new URL(url); if(u.hostname.includes('youtu.be')) return u.pathname.slice(1); if(u.searchParams.get('v')) return u.searchParams.get('v'); const m=url.match(/embed\/([\w-]{6,})/); return m?m[1]:'';}catch{return ''}}
-
-    // Foto slots
-    files.forEach((inp,i)=>{
-      inp.addEventListener('change',async()=>{ if(inp.files[0]){ const data=await fileToDataURL(inp.files[0]); state.photos[i]=data; updateSlots(); render(); }});
-      // suporte a drag & drop
-      const slot=inp.closest('.slot');
-      slot.addEventListener('dragover',e=>{e.preventDefault(); slot.querySelector('.drop').style.borderColor='#a78bfa';});
-      slot.addEventListener('dragleave',()=>{slot.querySelector('.drop').style.borderColor='#4a4870';});
-      slot.addEventListener('drop',async e=>{e.preventDefault(); slot.querySelector('.drop').style.borderColor='#4a4870'; const f=[...e.dataTransfer.files].find(f=>f.type.startsWith('image/')); if(f){ const data=await fileToDataURL(f); state.photos[i]=data; updateSlots(); render(); }});
-      rms[i].addEventListener('click',()=>{ state.photos[i]=null; updateSlots(); render(); });
-    });
-
-    function updateSlots(){
-      state.photos.forEach((src,i)=>{
-        if(src){ thumbs[i].src=src; thumbs[i].style.display='block'; rms[i].style.display='inline-block'; }
-        else { thumbs[i].removeAttribute('src'); thumbs[i].style.display='none'; rms[i].style.display='none'; }
-      });
+    // corações caindo
+    const hc=document.getElementById('hearts');
+    function heart(){
+      const e=document.createElement('span');
+      e.className='heart';
+      e.textContent=Math.random()<.5?'💖':'💘';
+      e.style.setProperty('--sz',(14+Math.random()*18)+'px');
+      e.style.setProperty('--du',(7+Math.random()*6)+'s');
+      e.style.left=(Math.random()*100)+'vw';
+      e.style.opacity=0.75+Math.random()*0.25;
+      hc.appendChild(e);
+      setTimeout(()=>e.remove(),14000);
     }
-
-    // Texto
-    names.addEventListener('input',()=>{ state.names=names.value.trim(); render(); });
-    msg.addEventListener('input',()=>{ state.msg=msg.value; render(); });
-
-    // YouTube
-    yt.addEventListener('input',()=>{ const id=videoIdFromYouTube(yt.value.trim()); state.ytid=id; renderYT(); });
-    function renderYT(){ if(state.ytid){ ytFrame.src=`https://www.youtube.com/embed/${state.ytid}?autoplay=1&mute=1&playsinline=1&loop=1&playlist=${state.ytid}`; } else { ytFrame.removeAttribute('src'); } }
-
-    // Render preview
-    let cur=0; setInterval(()=>{ const imgs=state.photos.filter(Boolean); if(imgs.length>1){ cur=(cur+1)%imgs.length; mainPhoto.src=imgs[cur]; } },5000);
-    function render(){ title.textContent = state.names || 'Amor em Códigos'; msgOut.textContent = state.msg || 'Sua mensagem aparecerá aqui...'; const first=state.photos.find(Boolean); if(first) mainPhoto.src=first; }
-
-    // Hearts always falling
-    const hc=document.getElementById('hearts'); function heart(){ const e=document.createElement('span'); e.className='heart'; e.textContent=Math.random()<.5?'💖':'💘'; e.style.setProperty('--sz',(14+Math.random()*18)+'px'); e.style.setProperty('--du',(7+Math.random()*6)+'s'); e.style.left=(Math.random()*100)+'vw'; e.style.opacity=0.75+Math.random()*0.25; hc.appendChild(e); setTimeout(()=>e.remove(),14000);} setInterval(heart,260);
-
-    // Download final
-    document.getElementById('btnDownload').addEventListener('click',()=>{ const html=generateMiniSite(); const blob=new Blob([html],{type:'text/html'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='mini-site-print.html'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),1000); });
-
-    function generateMiniSite(){
-      const titleTxt=(state.names||'Amor em Códigos').replace(/</g,'&lt;');
-      const msgTxt=(state.msg||'').replace(/</g,'&lt;');
-      const imgs=state.photos.filter(Boolean);
-      const id=state.ytid;
-      const imgTag=imgs.length?`<img class='photo' src='${imgs[0]}' alt='foto'>`:"";
-      return `<!doctype html><html lang='pt-BR'><head><meta charset='utf-8'/><meta name='viewport' content='width=device-width, initial-scale=1'/><title>${titleTxt}</title><style>body{margin:0;background:#0c0a13;color:#fff;font-family:Inter,system-ui,Arial,sans-serif}.wrap{max-width:860px;margin:0 auto;padding:0 16px}.phone{position:relative;width:280px;margin:18px auto;border:1px solid rgba(255,255,255,.12);border-radius:26px;overflow:hidden;background:#111;box-shadow:0 18px 36px rgba(0,0,0,.45)}.screen{position:relative;aspect-ratio:9/18;overflow:auto;background:linear-gradient(180deg,#0d0c18,#141328)}.title{font-weight:800;font-size:22px;text-align:center;margin:18px 8px;background:linear-gradient(90deg,#9b87ff,#ff77a9);-webkit-background-clip:text;background-clip:text;color:transparent}.photo{display:block;width:84%;margin:0 auto;border-radius:14px;box-shadow:0 10px 22px rgba(0,0,0,.5)}.section{padding:14px}.section h3{margin:10px 0 8px;font-size:18px}.ytbox iframe{width:100%;height:200px;border:0;border-radius:12px}#hearts{position:fixed;inset:0;pointer-events:none}.heart{position:fixed;top:-10vh;font-size:var(--sz,18px);transform:translateY(-10vh) rotate(0);filter:drop-shadow(0 8px 12px rgba(255,77,109,.25));animation:fall var(--du,9s) linear forwards,sway var(--du,9s) ease-in-out infinite;opacity:.95}@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}@keyframes sway{0%,100%{margin-left:-10px}50%{margin-left:10px}}</style></head><body><div id='hearts'></div><header class='wrap'><h1 class='title' style='margin:12px 0'>${titleTxt}</h1></header><main class='wrap'><div class='phone'><div class='screen'>${imgTag}<div class='section'><h3>Nossa mensagem:</h3><div style='line-height:1.6'>${msgTxt||''}</div></div><div class='section'><h3>Nossa Música:</h3><div class='ytbox'><iframe title='YouTube' src='https://www.youtube.com/embed/${id}?autoplay=1&mute=1&playsinline=1&loop=1&playlist=${id}' allow='autoplay; encrypted-media' allowfullscreen></iframe></div></div></div></div></main><script>const hc=document.getElementById('hearts');function heart(){const e=document.createElement('span');e.className='heart';e.textContent=Math.random()<.5?'💖':'💘';e.style.setProperty('--sz',(14+Math.random()*18)+'px');e.style.setProperty('--du',(7+Math.random()*6)+'s');e.style.left=(Math.random()*100)+'vw';e.style.opacity=0.75+Math.random()*0.25;hc.appendChild(e);setTimeout(()=>e.remove(),14000);}setInterval(heart,260);</script></body></html>`;
-    }
-
-    // Init
-    document.getElementById('year')?.textContent=new Date().getFullYear();
-    render();
+    setInterval(heart,260);
   </script>
 </body>
 </html>
