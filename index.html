@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Amor em Códigos • Dia dos Namorados</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0a0d;             /* fundo geral escuro */
+      --bg2:#131217;            /* variação do fundo */
+      --card:#1b1a20;           /* cartões */
+      --line:#2a2932;           /* linhas sutis */
+      --text:#f8f7fb;           /* texto principal */
+      --muted:#cfc9d9;          /* texto secundário */
+      --brand1:#ff4d6d;         /* rosa valentines */
+      --brand2:#ff99ac;         /* rosa claro */
+      --brand3:#a855f7;         /* lilás de apoio */
+      --ok:#22c55e;
+      --danger:#ef4444;
+      --shadow:0 10px 30px rgba(255,77,109,.2);
+      --radius:18px;
+      --maxw:1180px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:'Inter',system-ui,Arial,sans-serif; color:var(--text);
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(255,77,109,.15), transparent 60%),
+                  radial-gradient(900px 400px at 110% 10%, rgba(168,85,247,.14), transparent 60%),
+                  radial-gradient(700px 500px at 20% 120%, rgba(255,153,172,.12), transparent 60%),
+                  var(--bg);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+    .wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px}
+
+    /* HEADER */
+    header{
+      position:sticky; top:0; z-index:40; backdrop-filter:saturate(160%) blur(8px);
+      background:linear-gradient(180deg, rgba(11,10,13,.9), rgba(11,10,13,.65));
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .header-inner{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:12px}
+    .brand-badge{width:38px; height:38px; border-radius:12px; background:linear-gradient(135deg,var(--brand1),var(--brand2)); box-shadow:var(--shadow); display:grid; place-items:center}
+    .brand-badge svg{filter:drop-shadow(0 3px 8px rgba(255,77,109,.35))}
+    .brand h1{font-size:18px; margin:0}
+
+    .actions{display:flex; align-items:center; gap:10px}
+    .btn{
+      border:0; border-radius:12px; padding:10px 16px; font-weight:700; cursor:pointer; transition:.2s transform, .2s box-shadow, .2s background;
+      background:#27262f; color:var(--text);
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:linear-gradient(135deg,var(--brand1),var(--brand2)); box-shadow:var(--shadow)}
+    .btn-primary:hover{filter:saturate(110%)}
+
+    /* HEARTS TOGGLE */
+    .toggle{display:flex; align-items:center; gap:8px; font-size:14px; color:var(--muted)}
+    .switch{position:relative; width:48px; height:28px}
+    .switch input{display:none}
+    .slider{
+      position:absolute; inset:0; background:#3a3944; border-radius:999px; cursor:pointer; transition:.25s;
+      box-shadow:inset 0 2px 8px rgba(0,0,0,.35)
+    }
+    .slider::before{
+      content:""; position:absolute; width:22px; height:22px; border-radius:999px; left:3px; top:3px; background:linear-gradient(135deg, #fff, #dcd5e6); transition:.25s;
+      box-shadow:0 4px 10px rgba(0,0,0,.35)
+    }
+    .switch input:checked + .slider{background:linear-gradient(135deg,var(--brand1),var(--brand2))}
+    .switch input:checked + .slider::before{transform:translateX(20px)}
+
+    /* HERO */
+    .hero{
+      position:relative; padding:72px 0 40px; overflow:hidden; isolation:isolate;
+    }
+    .hero-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:26px; align-items:center}
+    .eyebrow{font-weight:800; letter-spacing:.1em; color:rgba(255,255,255,.7); text-transform:uppercase; font-size:12px}
+    .title{font-size: clamp(28px, 5vw, 52px); line-height:1.05; margin:8px 0 10px; font-weight:800;
+      background:linear-gradient(135deg,var(--brand2),#fff); -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 10px 30px rgba(255,153,172,.12))}
+    .subtitle{color:var(--muted); font-size:clamp(14px, 1.6vw, 18px)}
+    .cta{display:flex; gap:12px; align-items:center; margin-top:16px; flex-wrap:wrap}
+    .note{font-size:12px; color:#b9b4c6}
+
+    .phone{
+      position:relative; aspect-ratio:9/16; border-radius:34px; background:linear-gradient(160deg,#2b2935,#181720);
+      border:1px solid rgba(255,255,255,.06); box-shadow: 0 30px 60px rgba(0,0,0,.45), 0 15px 40px rgba(255,77,109,.15);
+      overflow:hidden; transform: perspective(900px) rotateY(-10deg) rotateX(2deg);
+    }
+    .phone::after{content:""; position:absolute; inset:0; background:radial-gradient(80% 60% at 50% -10%, rgba(255,77,109,.25), transparent 60%) }
+    .phone-screen{position:absolute; inset:14px; border-radius:24px; background:linear-gradient(180deg,#111016,#161522)}
+
+    .phone-card{position:absolute; left:20px; right:20px; border-radius:18px; padding:14px; background:rgba(255,255,255,.05); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.08)}
+    .pc1{top:24px}
+    .pc2{top:140px}
+    .pc3{top:256px}
+    .pc1 .pill{background:linear-gradient(135deg,var(--brand1),var(--brand2)); font-size:12px; padding:6px 10px; border-radius:999px; display:inline-flex; gap:6px; align-items:center}
+
+    /* SECTIONS */
+    section{padding:56px 0}
+    h2{font-size:28px; margin:0 0 8px}
+    p.lead{color:var(--muted); margin:0 0 24px}
+
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+    .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:18px; box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .card h3{margin:0 0 6px}
+    .card p{color:var(--muted)}
+    .chip{display:inline-flex; gap:8px; align-items:center; font-weight:700; font-size:12px; padding:6px 10px; border-radius:999px; background:#27262f; color:#fff; border:1px solid #353344}
+
+    /* STEPS */
+    .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:16px}
+    .step{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:16px}
+    .step .n{ width:34px; height:34px; display:grid; place-items:center; border-radius:10px; font-weight:800; background:linear-gradient(135deg,var(--brand1),var(--brand2)); box-shadow:var(--shadow)}
+    .step h4{margin:10px 0 6px}
+
+    /* PRICING */
+    .pricing{display:grid; grid-template-columns:1.2fr .8fr; gap:18px}
+    .price-card{background:linear-gradient(160deg, #251f28, #1c1a22); border:1px solid rgba(255,255,255,.06); border-radius:22px; padding:22px; box-shadow:0 30px 60px rgba(255,77,109,.12)}
+    .price{font-size:42px; font-weight:800}
+    .ul{display:grid; gap:10px; margin:18px 0}
+    .ul li{list-style:none; display:flex; gap:10px; align-items:flex-start; color:var(--muted)}
+
+    /* FAQ */
+    details{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px 16px}
+    summary{cursor:pointer; font-weight:700}
+    summary::-webkit-details-marker{display:none}
+    details + details{margin-top:10px}
+
+    /* FOOTER */
+    footer{padding:28px 0 40px; border-top:1px dashed rgba(255,255,255,.08); color:#bdb8c9}
+
+    /* FALLING HEARTS */
+    #hearts-container{position:fixed; inset:0; pointer-events:none; z-index:10}
+    .heart{
+      position:fixed; top:-10vh; font-size:var(--size,18px); transform:translateY(-10vh) rotate(0deg);
+      will-change:transform, opacity; filter:drop-shadow(0 8px 12px rgba(255,77,109,.25));
+      animation: fall var(--dur,9s) linear forwards, sway var(--dur,9s) ease-in-out infinite;
+      opacity:.95;
+    }
+    @keyframes fall{ to{ transform:translateY(110vh) rotate(360deg); opacity:0 } }
+    @keyframes sway{ 0%,100%{ margin-left:-10px } 50%{ margin-left:10px } }
+
+    /* FLOAT ANIM for cards */
+    .float{animation:float 6s ease-in-out infinite}
+    @keyframes float{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-6px) } }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px){ .hero-grid{grid-template-columns:1fr} .pricing{grid-template-columns:1fr} .steps{grid-template-columns:1fr 1fr} }
+    @media (max-width: 560px){ .grid-3{grid-template-columns:1fr} .steps{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+  <!-- HEARTS LAYER -->
+  <div id="hearts-container" aria-hidden="true"></div>
+
+  <header>
+    <div class="wrap header-inner">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 21s-7.5-4.35-9.75-8.4C.96 9.85 2.2 6 5.7 6 8.1 6 9.43 7.6 12 9.75 14.57 7.6 15.9 6 18.3 6c3.5 0 4.74 3.85 3.45 6.6C19.5 16.65 12 21 12 21Z"/></svg>
+        </div>
+        <h1>Amor em Códigos</h1>
+      </div>
+      <div class="actions">
+        <label class="toggle" title="Ativar/Desativar corações caindo">
+          <span>Amor em chuva</span>
+          <span class="switch">
+            <input id="toggleHearts" type="checkbox" checked>
+            <span class="slider"></span>
+          </span>
+        </label>
+        <button id="cta-top" class="btn btn-primary">Criar Mini Site</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Dia dos Namorados</div>
+          <h2 class="title">Surpreenda o seu amor com um mini site inesquecível 💘</h2>
+          <p class="subtitle">Personalize com fotos, mensagens e música — e entregue por link ou QR Code.
+            Uma homenagem elegante e fácil de criar.
+          </p>
+          <div class="cta">
+            <button id="cta" class="btn btn-primary">Criar Agora</button>
+            <a class="btn" href="#como-funciona">Como funciona</a>
+          </div>
+          <div class="note">Edição simples • Visual profissional • Compartilhe em segundos</div>
+        </div>
+        <div class="phone float" aria-hidden="true">
+          <div class="phone-screen"></div>
+          <div class="phone-card pc1">
+            <span class="pill">💖 Mini Site do Amor</span>
+            <p style="margin:10px 0 0; color:#ddd">“Você topa viver esta aventura comigo?”</p>
+          </div>
+          <div class="phone-card pc2">
+            <p style="margin:0; color:#ddd">• 7 fotos especiais<br>• Mensagem personalizada<br>• Música do casal</p>
+          </div>
+          <div class="phone-card pc3">
+            <div class="chip">🎁 Pronto para compartilhar</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="wrap">
+      <h2>Feito para encantar</h2>
+      <p class="lead">Layout romântico, animações suaves e detalhes que brilham — perfeito para o seu Dia dos Namorados.</p>
+      <div class="grid-3">
+        <div class="card">
+          <h3>💜 Design Personalizado</h3>
+          <p>Escolha cores, fontes e capa. O visual que combina com a história de vocês.</p>
+        </div>
+        <div class="card">
+          <h3>🔗 Link & QR Code</h3>
+          <p>Compartilhe facilmente por link ou entregue um QR Code surpresa.</p>
+        </div>
+        <div class="card">
+          <h3>🎵 Trilha do casal</h3>
+          <p>Defina a música que marca o relacionamento e torne o momento inesquecível.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMO FUNCIONA / STEPS -->
+    <section id="como-funciona" class="wrap">
+      <h2>Em 4 passos</h2>
+      <p class="lead">Crie, pague e receba seu mini site — tudo em minutos.</p>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><h4>Personalize</h4><p>Fotos, mensagem e música.</p></div>
+        <div class="step"><div class="n">2</div><h4>Pagamento</h4><p>Processo simples e seguro.</p></div>
+        <div class="step"><div class="n">3</div><h4>Receba o acesso</h4><p>Link e QR Code no seu e‑mail.</p></div>
+        <div class="step"><div class="n">4</div><h4>Compartilhe</h4><p>Entregue a surpresa e emocione 💞</p></div>
+      </div>
+    </section>
+
+    <!-- PRICING / BENEFITS -->
+    <section class="wrap">
+      <div class="pricing">
+        <div class="price-card">
+          <h3 style="margin:0 0 8px">Tudo que você recebe</h3>
+          <ul class="ul">
+            <li>💖 Página personalizada e responsiva</li>
+            <li>💖 Tema especial de Dia dos Namorados</li>
+            <li>💖 QR Code e Link de acesso rápido</li>
+            <li>💖 Adicione até 7 fotos + 1 música</li>
+            <li>💖 1 ano de acesso</li>
+            <li>🛡️ Privacidade e qualidade garantidas</li>
+          </ul>
+          <div class="chip">Oferta de temporada</div>
+        </div>
+        <div class="card" style="display:grid; align-content:center">
+          <div style="opacity:.85">a partir de</div>
+          <div class="price">R$ 25,00</div>
+          <div style="opacity:.85">pagamento único</div>
+          <div style="height:10px"></div>
+          <button class="btn btn-primary" id="cta-pricing">Quero criar agora</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="wrap">
+      <h2>Perguntas frequentes</h2>
+      <details>
+        <summary>O que é o Mini Site do Amor?</summary>
+        <p>É uma página personalizada com fotos, mensagem e música para celebrar o relacionamento e surpreender quem você ama.</p>
+      </details>
+      <details>
+        <summary>Consigo editar depois de pronto?</summary>
+        <p>Você poderá solicitar ajustes antes de compartilhar o link final. Combine conosco a melhor forma de atualização.</p>
+      </details>
+      <details>
+        <summary>Como entrego a surpresa?</summary>
+        <p>Você recebe um link e um QR Code. Envie por mensagem ou entregue impresso com um presente.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap">
+      <div>© <span id="year"></span> Amor em Códigos — Dia dos Namorados</div>
+      <div style="display:flex; gap:12px; align-items:center">
+        <a class="btn" href="#">Termos</a>
+        <a class="btn" href="#">Privacidade</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== util =====
+    const $ = (s, ctx=document) => ctx.querySelector(s);
+    const $$ = (s, ctx=document) => [...ctx.querySelectorAll(s)];
+
+    // ===== hearts rain =====
+    let heartsEnabled = true;
+    const heartsContainer = document.getElementById('hearts-container');
+
+    function spawnHeart(){
+      if(!heartsEnabled) return;
+      const el = document.createElement('span');
+      el.className = 'heart';
+      el.textContent = Math.random() < .5 ? '💖' : '💘';
+      const size = 14 + Math.random()*20;       // 14–34px
+      const dur  = 7 + Math.random()*6;         // 7–13s
+      const left = Math.random()*100;           // 0–100vw
+      el.style.setProperty('--size', size+'px');
+      el.style.setProperty('--dur',  dur+'s');
+      el.style.left = left + 'vw';
+      el.style.opacity = 0.75 + Math.random()*0.25;
+      heartsContainer.appendChild(el);
+      setTimeout(()=> el.remove(), dur*1000);
+    }
+
+    // steady stream
+    let heartInterval = setInterval(spawnHeart, 220);
+
+    function toggleHearts(on){
+      heartsEnabled = on;
+      if(on){
+        heartInterval = setInterval(spawnHeart, 220);
+      } else {
+        clearInterval(heartInterval);
+        $$('.heart').forEach(h => h.remove());
+      }
+    }
+
+    // toggle switch
+    const toggle = document.getElementById('toggleHearts');
+    toggle.addEventListener('change', e => toggleHearts(e.target.checked));
+
+    // ===== CTA confetti hearts =====
+    function burstHearts(x, y){
+      const N = 28 + Math.floor(Math.random()*12);
+      for(let i=0;i<N;i++){
+        const el = document.createElement('span');
+        el.textContent = Math.random() < .5 ? '💖' : '💘';
+        el.style.position='fixed'; el.style.left=x+'px'; el.style.top=y+'px';
+        el.style.fontSize = (14+Math.random()*14)+'px';
+        el.style.pointerEvents='none'; el.style.zIndex=20; el.style.filter='drop-shadow(0 6px 10px rgba(255,77,109,.35))';
+        document.body.appendChild(el);
+        const angle = Math.random()*Math.PI*2; const speed = 2 + Math.random()*5; const decay = 0.96 + Math.random()*0.02;
+        let vx = Math.cos(angle)*speed; let vy = Math.sin(angle)*speed - 1; let op=1; let t=0;
+        const anim = () =>{
+          t++; vx*=decay; vy=(vy+0.08)*decay; x+=vx*2; y+=vy*2;
+          el.style.transform = `translate(${x}px, ${y}px) rotate(${t*8}deg)`; el.style.opacity = op; op-=0.012;
+          if(op<=0){ el.remove(); return; }
+          requestAnimationFrame(anim);
+        };
+        requestAnimationFrame(anim);
+      }
+    }
+
+    // CTA buttons scroll + burst
+    function ctaAction(evt){
+      const rect = evt.currentTarget.getBoundingClientRect();
+      const x = rect.left + rect.width/2; const y = rect.top + window.scrollY + rect.height/2;
+      burstHearts(x, y);
+      document.querySelector('#como-funciona')?.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    $('#cta')?.addEventListener('click', ctaAction);
+    $('#cta-top')?.addEventListener('click', ctaAction);
+    $('#cta-pricing')?.addEventListener('click', ctaAction);
+
+    // misc
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
