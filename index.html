@@ -3,101 +3,81 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Portal do Amor</title>
+  <title>Portal do Amor • Criador</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0c0a13; --grid:rgba(255,255,255,.05); --card:#171720; --line:#2a2940; --text:#fbf9ff; --muted:#cbc6d8;
-      --brand1:#9b87ff; --brand2:#ff77a9;
-      --shadow:0 10px 28px rgba(123,97,255,.25),0 14px 40px rgba(255,66,123,.18);
-      --radius:16px; --maxw:1100px;
+      --bg:#0c0a13; --card:#171720; --line:#2a2940; --grid:rgba(255,255,255,.05);
+      --text:#fbf9ff; --muted:#c8c2d6; --brand1:#9b87ff; --brand2:#ff77a9; --shadow:0 10px 28px rgba(123,97,255,.25),0 14px 40px rgba(255,66,123,.18);
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{margin:0;font-family:'Inter',system-ui,Arial,sans-serif;color:var(--text);
       background:
         radial-gradient(1200px 600px at 10% -10%, rgba(155,135,255,.18), transparent 60%),
         radial-gradient(900px 400px at 110% 10%, rgba(255,119,169,.12), transparent 60%),
         linear-gradient(180deg,#0b0a11,#0f0d19);
-      overflow-x:hidden; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility}
-    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(14px,3vw,24px)}
+      overflow-x:hidden}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 clamp(14px,3vw,24px)}
 
-    /* Header */
-    header{position:sticky; top:0; z-index:40; backdrop-filter:saturate(160%) blur(8px);
+    header{position:sticky; top:0; z-index:20; backdrop-filter:saturate(160%) blur(8px);
       background:linear-gradient(180deg, rgba(13,12,20,.9), rgba(13,12,20,.6)); border-bottom:1px solid rgba(255,255,255,.06)}
     .head{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 0}
     .brand{display:flex; align-items:center; gap:12px}
     .badge{width:38px; height:38px; border-radius:12px; background:linear-gradient(135deg,var(--brand1),var(--brand2)); box-shadow:var(--shadow); display:grid; place-items:center}
     h1{margin:0; font-size:clamp(16px,2.2vw,18px)}
-    .btn{border:0; border-radius:12px; padding:10px 14px; font-weight:800; cursor:pointer; color:#fff; background:#242432; transition:transform .15s ease, filter .15s ease}
+    .btn{border:0; border-radius:12px; padding:10px 14px; font-weight:800; cursor:pointer; color:#fff; background:#242432}
     .btn-primary{background:linear-gradient(135deg,var(--brand1),var(--brand2)); box-shadow:var(--shadow)}
-    .btn-ghost{background:#242432}
-    .btn:active{transform:scale(.98)}
 
-    /* Layout */
     main{position:relative}
     main::before{content:""; position:absolute; inset:0; background:
-      linear-gradient(transparent 31px, rgba(255,255,255,.04) 32px) 0 0/100% 32px,
-      linear-gradient(90deg, transparent 31px, rgba(255,255,255,.04) 32px) 0 0/32px 100%;
+      linear-gradient(transparent 31px, var(--grid) 32px) 0 0/100% 32px,
+      linear-gradient(90deg, transparent 31px, var(--grid) 32px) 0 0/32px 100%;
       mask-image:linear-gradient(180deg, transparent, rgba(0,0,0,.6) 8%, rgba(0,0,0,.6) 92%, transparent)}
-    .grid{position:relative; display:grid; grid-template-columns:1.1fr .9fr; gap:18px; padding:18px 0}
-    @media (max-width: 960px){ .grid{grid-template-columns:1fr} }
+    .grid{position:relative; display:grid; grid-template-columns:1.05fr .95fr; gap:18px; padding:18px 0}
+    @media (max-width: 940px){ .grid{grid-template-columns:1fr} }
 
-    /* Painéis */
-    .panel{background:linear-gradient(180deg,#181826, #141421); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow); overflow:hidden}
+    .panel{background:linear-gradient(180deg,#181826,#141421); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow); overflow:hidden}
     .panel header{padding:12px 14px; border-bottom:1px solid var(--line); font-weight:800}
     .panel .bd{padding:14px}
 
-    label{font-size:13px; color:#e7e2f9}
     input[type=text], input[type=url], input[type=date]{width:100%; background:#1b1b28; color:#fff; border:1px solid #2f2f45; border-radius:10px; padding:10px 12px}
     input[type=file]{width:100%}
     .small{font-size:12px; color:#a9a4b8}
 
-    /* Dropzone */
     .drop{border:1px dashed #3a3954; background:rgba(255,255,255,.03); border-radius:14px; padding:14px; text-align:center}
     .drop.drag{border-color:#a78bfa; background:rgba(167,139,250,.08)}
 
-    /* Cards de foto */
     .cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; margin-top:12px}
     .card-photo{position:relative; background:#151525; border:1px solid #2f2e46; border-radius:14px; overflow:hidden; box-shadow:0 10px 24px rgba(0,0,0,.25)}
-    .card-photo .thumb{width:100%; height:120px; object-fit:cover; display:block; filter:saturate(1.06)}
+    .card-photo .thumb{width:100%; height:120px; object-fit:cover; display:block}
     .card-photo .cap{padding:10px}
     .card-photo .cap input{width:100%; padding:8px 10px; border-radius:10px; border:1px solid #31304a; background:#1a1a2a; color:#fff; font-size:12px}
-    .chip{position:absolute; top:8px; left:8px; font-size:11px; padding:4px 8px; border-radius:999px; background:rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.14)}
-    .del{position:absolute; top:8px; right:8px; background:#ff4d6d; border:0; color:#fff; width:26px; height:26px; border-radius:999px; cursor:pointer; box-shadow:0 6px 14px rgba(255,77,109,.4)}
-    .reorder{position:absolute; bottom:8px; right:8px; display:flex; gap:6px}
-    .reorder button{background:#27263a; color:#fff; border:1px solid #3a3954; width:26px; height:26px; border-radius:8px}
+    .card-photo .del{position:absolute; top:8px; right:8px; background:#ff4d6d; border:0; color:#fff; width:26px; height:26px; border-radius:999px; cursor:pointer}
 
-    /* Prévia do celular */
-    .phone-wrap{display:grid; place-items:center; padding:6px}
-    .phone{position:relative; width:230px; max-width:72vw; aspect-ratio:9/18; border-radius:28px; background:linear-gradient(160deg,#2a2835,#171622); border:1px solid rgba(255,255,255,.08); box-shadow:0 30px 60px rgba(0,0,0,.42); overflow:hidden}
-    .phone::after{content:""; position:absolute; inset:0; background:radial-gradient(80% 60% at 50% -10%, rgba(155,135,255,.18), transparent 60%)}
-    .notch{position:absolute; top:6px; left:50%; transform:translateX(-50%); width:92px; height:18px; background:#0e0d16; border-radius:0 0 12px 12px; border:1px solid rgba(255,255,255,.06)}
+    .phone{position:relative; width:230px; max-width:72vw; aspect-ratio:9/18; border-radius:28px; background:linear-gradient(160deg,#2a2835,#171622); border:1px solid rgba(255,255,255,.08); box-shadow:0 30px 60px rgba(0,0,0,.42); overflow:hidden; margin:0 auto}
     .screen{position:absolute; inset:10px; border-radius:22px; background:linear-gradient(180deg,#0d0c18,#141328); overflow:hidden}
-
     .slide{position:absolute; inset:0; display:grid; grid-template-rows:1fr auto auto; gap:8px; padding:10px; opacity:0; transition:opacity .6s ease}
-    .slide img{max-width:100%; max-height:58%; border-radius:12px; box-shadow:0 8px 18px rgba(0,0,0,.45); object-fit:contain}
-    .caption{text-align:center}
-    .caption span{font-size:12px; background:rgba(0,0,0,.45); padding:6px 10px; border-radius:8px; border:1px solid rgba(255,255,255,.12)}
-    .since{font-size:11px; color:#ddd; opacity:.9; text-align:center}
     .slide.show{opacity:1}
-    .bar{position:absolute; bottom:0; left:0; right:0; text-align:center; padding:6px; background:rgba(0,0,0,.45); font-size:12px; border-top:1px solid rgba(255,255,255,.08)}
+    .slide img{max-width:100%; max-height:58%; border-radius:12px; object-fit:contain; box-shadow:0 8px 18px rgba(0,0,0,.45)}
+    .caption{text-align:center}
+    .caption span{font-size:12px; background:rgba(0,0,0,.45); padding:6px 10px; border-radius:8px}
+    .since{font-size:11px; color:#ddd; opacity:.9; text-align:center}
+    .bottombar{position:absolute; bottom:0; left:0; right:0; text-align:center; padding:6px; background:rgba(0,0,0,.45); font-size:12px}
+
+    .live{margin-top:12px; border:1px solid #2a2940; border-radius:14px; overflow:hidden; background:#0f0f18}
+    .live header{padding:10px 12px; font-size:13px; border-bottom:1px solid #2a2940; background:#121224}
+    .live-frame{display:block; width:100%; height:560px; border:0}
+    @media (max-width: 640px){ .live-frame{height:480px} }
 
     .actions{display:flex; gap:10px; flex-wrap:wrap; justify-content:center}
-
-    /* QR */
-    .qr{display:flex; align-items:center; gap:12px; flex-wrap:wrap}
-    .qr img{width:180px; height:180px; border-radius:12px; border:1px solid #2f2f45; box-shadow:0 10px 24px rgba(0,0,0,.25)}
-
-    footer{padding:20px; text-align:center; color:#aaa}
   </style>
 </head>
 <body>
   <header>
     <div class="wrap head">
-      <div class="brand"><div class="badge">💜</div><h1>Portal do Amor</h1></div>
+      <div class="brand"><div class="badge">💜</div><h1>Portal do Amor • Criador</h1></div>
       <div style="display:flex; gap:8px; align-items:center">
         <button class="btn btn-primary" id="btnDownload">Baixar Mini Site (.html)</button>
       </div>
@@ -106,181 +86,136 @@
 
   <main class="wrap">
     <div class="grid">
-      <!-- Painel esquerdo: Builder -->
       <div class="panel">
-        <header>Crie seu própio site</header>
-        <div class="bd">
-          <div class="rows" style="display:grid; gap:14px">
-            <div class="row">
-              <label for="names">1) Nomes/Frase</label>
-              <input id="names" type="text" placeholder="Ex.: Bruna e Fabrizio"/>
-            </div>
-
-            <div class="row">
-              <label for="date">2) Data especial (opcional) — para "Juntos há:"</label>
-              <input id="date" type="date"/>
-            </div>
-
-            <div class="row">
-              <label for="photos">3) Fotos (até 12)</label>
-              <div id="drop" class="drop">Arraste e solte as fotos aqui ou <input id="photos" type="file" accept="image/*" multiple style="display:inline; background:none; border:0; color:#a78bfa"></div>
-              <div class="small">Cada foto vira um <strong>card</strong>. Edite a mensagem e use ▲▼ ou Excluir.</div>
-              <div id="cards" class="cards"></div>
-            </div>
-
-            <div class="row">
-              <label for="yt">4) Música (YouTube) — cole o link do vídeo</label>
-              <input id="yt" type="url" placeholder="https://youtu.be/ID ou https://www.youtube.com/watch?v=ID"/>
-              <div class="small">O mini site tenta reproduzir automaticamente (mudo por padrão em celulares); toque para ativar o som.</div>
-            </div>
-
-            <div class="row">
-              <label for="publicUrl">5) Link público do seu mini site (depois de hospedar)</label>
-              <input id="publicUrl" type="url" placeholder="https://seusite.com/mini.html"/>
-              <div class="qr">
-                <button class="btn btn-ghost" id="genQR">Gerar QR Code</button>
-                <button class="btn" id="saveQR" style="display:none">Baixar QR (.png)</button>
-                <img id="qr" alt="QR Code" style="display:none"/>
-              </div>
-            </div>
-
-            <div class="actions">
-              <button class="btn btn-primary" id="btnDownload2">Baixar Mini Site (.html)</button>
-            </div>
+        <header>Passo a passo</header>
+        <div class="bd" style="display:grid; gap:14px">
+          <div>
+            <label for="titleInput">1) Nomes/Frase</label>
+            <input id="titleInput" type="text" placeholder="Ex.: Bruna & Fabrizio">
+          </div>
+          <div>
+            <label for="dateInput">2) Data especial (opcional) — para "Juntos há:"</label>
+            <input id="dateInput" type="date">
+          </div>
+          <div>
+            <label>3) Fotos (até 12)</label>
+            <div id="drop" class="drop">Arraste e solte aqui ou escolha <input id="photoInput" type="file" accept="image/*" multiple style="display:inline; background:none; border:0; color:#a78bfa"></div>
+            <div class="small">Cada foto cria um <strong>card</strong> com legenda e opção de excluir.</div>
+            <div id="photoList" class="cards"></div>
+          </div>
+          <div>
+            <label for="ytLink">4) Música (YouTube) — cole o link</label>
+            <input id="ytLink" type="url" placeholder="https://youtu.be/ID ou https://www.youtube.com/watch?v=ID">
+            <div class="small">A prévia tenta tocar <em>mudo</em>. No site final, o usuário pode ativar o som.</div>
           </div>
         </div>
       </div>
 
-      <!-- Painel direito: Prévia -->
       <div class="panel">
-        <header>Prévia (cabe no celular)</header>
+        <header>Prévia (telefone) e Prévia da página final</header>
         <div class="bd">
-          <div class="phone-wrap">
-            <div class="phone">
-              <div class="notch" aria-hidden="true"></div>
-              <div class="screen" id="screen"></div>
-              <div class="bar">🎵 Música do YouTube</div>
-            </div>
+          <div class="phone">
+            <div class="screen" id="slider"></div>
+            <div class="bottombar">🎵 Música do YouTube</div>
           </div>
-          <div class="small" style="text-align:center">As fotos aparecem menores com <strong>mensagem embaixo</strong> + "Juntos há:" se você escolher a data.</div>
+          <iframe id="ytPreview" width="0" height="0" style="position:absolute;left:-9999px;opacity:0" allow="autoplay; encrypted-media"></iframe>
+
+          <div class="live" style="margin-top:16px">
+            <header>Prévia da página final (ao vivo)</header>
+            <iframe id="liveFrame" class="live-frame" title="Prévia do mini site"></iframe>
+          </div>
         </div>
       </div>
     </div>
-  </main>
 
-  <footer>© <span id="year"></span> Amor em Códigos</footer>
+    <section class="actions">
+      <button class="btn btn-primary" id="btnDownload2">Baixar Mini Site (.html)</button>
+    </section>
+  </main>
 
   <script>
     const $ = (s, c=document)=>c.querySelector(s); const $$ = (s, c=document)=>[...c.querySelectorAll(s)];
-    const cards = $('#cards'); const screen = $('#screen');
-    const state = { title:'Mini Site do Amor', date:'', yt:'', slides: [] };
+    const photoList=$('#photoList'); const slider=$('#slider'); const liveFrame=$('#liveFrame');
+    const titleInput=$('#titleInput'); const dateInput=$('#dateInput'); const ytInput=$('#ytLink'); const ytPreview=$('#ytPreview');
 
-    // utils
-    function fileToDataURL(file){ return new Promise(res=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.readAsDataURL(file); }); }
-    function videoIdFromYouTube(url){ try{ const u=new URL(url); if(u.hostname.includes('youtu.be')) return u.pathname.slice(1); if(u.searchParams.get('v')) return u.searchParams.get('v'); const m=url.match(/embed\/([\w-]{6,})/); return m?m[1]:''; }catch{ return ''; } }
-    function esc(s=''){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    let photos=[]; let siteTitle='Mini Site do Amor'; let siteDate='';
 
-    // inputs
-    $('#names').addEventListener('input', e=>{ state.title = e.target.value.trim()||'Mini Site do Amor'; render(); });
-    $('#date').addEventListener('change', e=>{ state.date = e.target.value || ''; render(); });
-    $('#yt').addEventListener('input', e=>{ state.yt = e.target.value.trim(); });
-
-    // dropzone + input
-    const drop = $('#drop'), fileInput = $('#photos');
-    drop.addEventListener('dragover', e=>{ e.preventDefault(); drop.classList.add('drag'); });
-    drop.addEventListener('dragleave', ()=> drop.classList.remove('drag'));
-    drop.addEventListener('drop', async e=>{ e.preventDefault(); drop.classList.remove('drag'); const files=[...e.dataTransfer.files].filter(f=>f.type.startsWith('image/')).slice(0,12); for(const f of files){ const data=await fileToDataURL(f); state.slides.push({src:data, cap:''}); } drawCards(); render(); });
-    fileInput.addEventListener('change', async e=>{ const files=[...e.target.files].slice(0,12); for(const f of files){ const data=await fileToDataURL(f); state.slides.push({src:data, cap:''}); } e.target.value=''; drawCards(); render(); });
-
-    function drawCards(){
-      cards.innerHTML='';
-      state.slides.forEach((s,i)=>{
-        const el=document.createElement('div'); el.className='card-photo';
-        el.innerHTML=`<span class="chip">Foto ${i+1}</span>
-          <button class="del" title="Excluir" aria-label="Excluir">✕</button>
-          <img class="thumb" src="${s.src}" alt="foto ${i+1}">
-          <div class="cap"><input type="text" placeholder="Mensagem desta foto" value="${esc(s.cap)}"></div>
-          <div class="reorder"><button data-act="up">▲</button><button data-act="down">▼</button></div>`;
-        el.querySelector('.del').addEventListener('click', ()=>{ state.slides.splice(i,1); drawCards(); render(); });
-        el.querySelector('input').addEventListener('input', ev=>{ s.cap = ev.target.value; render(); });
-        el.querySelector('[data-act="up"]').addEventListener('click',()=>{ if(i>0){ [state.slides[i-1],state.slides[i]]=[state.slides[i],state.slides[i-1]]; drawCards(); render(); }});
-        el.querySelector('[data-act="down"]').addEventListener('click',()=>{ if(i<state.slides.length-1){ [state.slides[i+1],state.slides[i]]=[state.slides[i],state.slides[i+1]]; drawCards(); render(); }});
-        cards.appendChild(el);
-      });
-    }
-
+    // Utils
+    const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    const videoIdFromYouTube=url=>{try{const u=new URL(url); if(u.hostname.includes('youtu.be')) return u.pathname.slice(1); if(u.searchParams.get('v')) return u.searchParams.get('v'); const m=url.match(/embed\/([-\w]{6,})/); return m?m[1]:'';}catch{return ''}};
     function msSince(d){ if(!d) return ''; const dd=new Date(d); const now=new Date(); const s=Math.floor((now-dd)/1000); const m=Math.floor(s/60); const h=Math.floor(m/60); const days=Math.floor(h/24); return `Juntos há: ${days} dias, ${h%24} horas, ${m%60} min, ${s%60} seg`; }
 
-    function render(){
-      screen.innerHTML='';
-      if(state.slides.length===0){ screen.innerHTML='<div style="padding:14px; color:#bbb; font-size:13px; text-align:center">Adicione fotos para ver aqui. As mensagens aparecem logo abaixo.</div>'; return; }
-      state.slides.forEach((p,i)=>{
+    // Fotos (input + drag n drop)
+    const drop=$('#drop'), fileInput=$('#photoInput');
+    drop.addEventListener('dragover', e=>{ e.preventDefault(); drop.classList.add('drag'); });
+    drop.addEventListener('dragleave', ()=> drop.classList.remove('drag'));
+    drop.addEventListener('drop', async e=>{ e.preventDefault(); drop.classList.remove('drag'); const files=[...e.dataTransfer.files].filter(f=>f.type.startsWith('image/')).slice(0,12); for(const f of files){ const data=await fileToDataURL(f); photos.push({src:data, cap:''}); } drawCards(); renderPreview(); updateLive(); });
+    fileInput.addEventListener('change', async e=>{ const files=[...e.target.files].slice(0,12); for(const f of files){ const data=await fileToDataURL(f); photos.push({src:data, cap:''}); } e.target.value=''; drawCards(); renderPreview(); updateLive(); });
+    function fileToDataURL(file){ return new Promise(res=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.readAsDataURL(file); }); }
+
+    function drawCards(){
+      photoList.innerHTML='';
+      photos.forEach((p,i)=>{
+        const card=document.createElement('div'); card.className='card-photo';
+        card.innerHTML=`<img class="thumb" src="${p.src}" alt="foto"><button class="del" data-i="${i}">✕</button><div class="cap"><input type="text" placeholder="Mensagem desta foto" value="${esc(p.cap)}" data-cap="${i}"></div>`;
+        photoList.appendChild(card);
+      });
+      photoList.querySelectorAll('.del').forEach(btn=>btn.onclick=()=>{ photos.splice(btn.dataset.i,1); drawCards(); renderPreview(); updateLive(); });
+      photoList.querySelectorAll('input').forEach(inp=>inp.oninput=()=>{ photos[inp.dataset.cap].cap=inp.value; renderPreview(); updateLive(); });
+    }
+
+    // Campos de Título/Date/YT
+    titleInput.addEventListener('input',()=>{ siteTitle=titleInput.value.trim()||'Mini Site do Amor'; updateLive(); });
+    dateInput.addEventListener('change',()=>{ siteDate=dateInput.value||''; renderPreview(); updateLive(); });
+    ytInput.addEventListener('input',()=>{ updateMusic(); updateLive(); });
+
+    function updateMusic(){
+      const id=videoIdFromYouTube(ytInput.value.trim());
+      if(id){ ytPreview.src=`https://www.youtube.com/embed/${id}?autoplay=1&mute=1&playsinline=1&loop=1&playlist=${id}`; }
+      else { ytPreview.removeAttribute('src'); }
+    }
+
+    // Prévia no telefone (dentro da página)
+    function renderPreview(){
+      slider.innerHTML='';
+      if(photos.length===0){
+        slider.innerHTML='<div style="display:grid;place-items:center;font-size:12px;color:#bbb">Adicione fotos para ver a prévia aqui. A mensagem aparece abaixo da foto.</div>';
+        return;
+      }
+      photos.forEach((p,i)=>{
         const slide=document.createElement('div'); slide.className='slide'+(i===0?' show':'');
-        slide.innerHTML=`<div style="display:flex;align-items:center;justify-content:center"><img src="${p.src}" alt="foto ${i+1}"></div>
-                          <div class="caption"><span>${esc(p.cap||'')}</span></div>
-                          <div class="since">${msSince(state.date)}</div>`;
-        screen.appendChild(slide);
+        slide.innerHTML=`<div style="display:flex;justify-content:center;align-items:center"><img src='${p.src}' alt='foto ${i+1}'/></div><div class="caption"><span>${esc(p.cap)}</span></div>${siteDate?`<div class="since">${msSince(siteDate)}</div>`:''}`;
+        slider.appendChild(slide);
       });
     }
 
-    // autoplay simples da prévia
-    let idx=0; setInterval(()=>{ const s=$$('.slide', screen); if(s.length<2) return; s[idx].classList.remove('show'); idx=(idx+1)%s.length; s[idx].classList.add('show'); }, 4800);
-
-    // QR Code
-    $('#genQR').addEventListener('click', ()=>{
-      const url=$('#publicUrl').value.trim(); if(!url){ alert('Cole a URL pública do seu mini site hospedado.'); return; }
-      const img=$('#qr'); img.src=`https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=${encodeURIComponent(url)}`; img.style.display='block'; $('#saveQR').style.display='inline-block';
-    });
-    $('#saveQR').addEventListener('click', ()=>{ const a=document.createElement('a'); a.href=$('#qr').src; a.download='mini-site-qr.png'; a.click(); });
-
-    // Download do mini site
-    function generateMiniSite(){
-      const photos = state.slides.map(s=>({src:s.src, cap:esc(s.cap||'')}));
-      const date = state.date; const title = esc(state.title||'Mini Site do Amor');
-      const vid = videoIdFromYouTube($('#yt').value.trim());
-      return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>${title}</title>
-<style>
-  :root{--bg:#0b0a0f;--text:#fbf9ff;--muted:#cbc6d8}
-  *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;color:var(--text);background:radial-gradient(900px 360px at 110% 0, rgba(167,139,250,.14), transparent 60%), #0b0a0f}
-  .wrap{max-width:860px;margin:0 auto;padding:0 16px}
-  header{text-align:center;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06)}
-  h1{margin:0;font-size:22px}
-  .phone{margin:18px auto;width:248px;border:1px solid rgba(255,255,255,.1);border-radius:26px;overflow:hidden;box-shadow:0 18px 36px rgba(0,0,0,.45);background:#111}
-  .screen{position:relative;aspect-ratio:9/18;overflow:hidden}
-  .slide{position:absolute;inset:0;display:grid;grid-template-rows:1fr auto auto;gap:8px;padding:10px;opacity:0;transition:opacity .6s ease}
-  .slide.show{opacity:1}
-  .slide img{max-width:100%;max-height:58%;border-radius:12px;object-fit:contain;box-shadow:0 8px 18px rgba(0,0,0,.5);animation:kb 12s ease-in-out infinite}
-  @keyframes kb{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
-  .caption{text-align:center}
-  .caption span{font-size:13px;background:rgba(0,0,0,.45);padding:6px 10px;border-radius:8px}
-  .since{font-size:12px;color:#ddd;opacity:.9;text-align:center}
-  #hearts{position:fixed;inset:0;pointer-events:none}
-  .heart{position:fixed;top:-10vh;font-size:var(--sz,18px);transform:translateY(-10vh) rotate(0);filter:drop-shadow(0 8px 12px rgba(255,77,109,.25));animation:fall var(--du,9s) linear forwards,sway var(--du,9s) ease-in-out infinite;opacity:.95}
-  @keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}@keyframes sway{0%,100%{margin-left:-10px}50%{margin-left:10px}}
-</style></head><body>
-<div id="hearts"></div>
-<header class="wrap"><h1>${title}</h1></header>
-<main class="wrap"><div class="phone"><div class="screen" id="scr"></div></div></main>
-<!-- YouTube embed mudo para autoplay confiável; usuário pode ativar som no player -->
-<iframe title="YouTube" width="0" height="0" style="position:absolute;left:-9999px;opacity:0" src="https://www.youtube.com/embed/${vid}?autoplay=1&mute=1&playsinline=1&loop=1&playlist=${vid}" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-<script>
-  const data={photos:${JSON.stringify(photos)}, date:'${date}'}; const scr=document.getElementById('scr');
-  function ms(d){ if(!d) return ''; const dd=new Date(d); const now=new Date(); const s=Math.floor((now-dd)/1000); const m=Math.floor(s/60); const h=Math.floor(m/60); const days=Math.floor(h/24); return `Juntos há: ${days} dias, ${h%24} horas, ${m%60} min, ${s%60} seg`; }
-  function render(){ scr.innerHTML=''; data.photos.forEach((p,i)=>{ const el=document.createElement('div'); el.className='slide'+(i===0?' show':''); el.innerHTML=`<div style="display:flex;justify-content:center;align-items:center"><img src='${p.src}' alt='foto ${i+1}'/></div><div class='caption'><span>${p.cap||''}</span></div><div class='since'>${ms(data.date)}</div>`; scr.appendChild(el); }); }
-  render(); let idx=0; setInterval(()=>{ const s=[...scr.children]; if(s.length<2) return; s[idx].classList.remove('show'); idx=(idx+1)%s.length; s[idx].classList.add('show'); }, 5000);
-  const hc=document.getElementById('hearts'); function heart(){ const e=document.createElement('span'); e.className='heart'; e.textContent=Math.random()<.5?'💖':'💘'; e.style.setProperty('--sz',(14+Math.random()*18)+'px'); e.style.setProperty('--du',(7+Math.random()*6)+'s'); e.style.left=(Math.random()*100)+'vw'; e.style.opacity=0.75+Math.random()*0.25; hc.appendChild(e); setTimeout(()=>e.remove(), 14000);} setInterval(heart,260);
-</script></body></html>`;
+    // Prévia da página final (iframe srcdoc)
+    function updateLive(){
+      const html = generateMiniSite(photos, ytInput.value.trim(), siteTitle, siteDate);
+      liveFrame.srcdoc = html;
     }
 
-    function download(html){ const blob=new Blob([html],{type:'text/html'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='mini-site-amor.html'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),1000); }
+    // Auto rotação dentro do preview (simples)
+    setInterval(()=>{
+      const slides=slider.querySelectorAll('.slide'); if(slides.length<2) return;
+      const cur=slider.querySelector('.show')||slides[0]; let i=[...slides].indexOf(cur);
+      cur.classList.remove('show'); i=(i+1)%slides.length; slides[i].classList.add('show');
+    }, 4800);
 
-    $('#btnDownload').addEventListener('click', ()=> download(generateMiniSite()));
-    $('#btnDownload2').addEventListener('click', ()=> download(generateMiniSite()));
+    // Baixar mini site (single file)
+    $('#btnDownload').addEventListener('click', ()=>download());
+    $('#btnDownload2').addEventListener('click', ()=>download());
+    function download(){ const html=generateMiniSite(photos, ytInput.value.trim(), siteTitle, siteDate); const blob=new Blob([html],{type:'text/html'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='mini-site-amor.html'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),1000); }
 
-    // render inicial
-    render();
-    document.getElementById('year').textContent=new Date().getFullYear();
+    // Geração do mini site final
+    function generateMiniSite(list, yt, title, dateStr){
+      const id = videoIdFromYouTube(yt);
+      const slides = list.map((p,i)=>`<div class='slide${i===0?" show":""}'><div style='display:flex;justify-content:center;align-items:center'><img src='${p.src}'/></div><div class='caption'><span>${esc(p.cap)}</span></div>${dateStr?`<div class='since'>${msSince(dateStr)}</div>`:''}</div>`).join('');
+      return `<!doctype html><html lang='pt-BR'><head><meta charset='utf-8'/><meta name='viewport' content='width=device-width, initial-scale=1'/><title>${esc(title)}</title><style>body{margin:0;background:#000;color:#fff;font-family:Inter,system-ui,Arial,sans-serif;text-align:center}.wrap{max-width:860px;margin:0 auto;padding:0 16px}header{padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06)}.phone{margin:18px auto;width:248px;border:1px solid rgba(255,255,255,.12);border-radius:26px;overflow:hidden;box-shadow:0 18px 36px rgba(0,0,0,.45);background:#111}.phone-screen{position:relative;aspect-ratio:9/18;overflow:hidden}.slide{position:absolute;inset:0;display:grid;grid-template-rows:1fr auto auto;gap:8px;padding:10px;opacity:0;transition:opacity .6s ease}.slide.show{opacity:1}.slide img{max-width:100%;max-height:58%;border-radius:12px;object-fit:contain;box-shadow:0 8px 18px rgba(0,0,0,.5)}.caption span{font-size:13px;background:rgba(0,0,0,.45);padding:6px 10px;border-radius:8px}.since{font-size:12px;color:#ddd;opacity:.9}#hearts{position:fixed;inset:0;pointer-events:none}.heart{position:fixed;top:-10vh;font-size:var(--sz,18px);transform:translateY(-10vh) rotate(0);filter:drop-shadow(0 8px 12px rgba(255,77,109,.25));animation:fall var(--du,9s) linear forwards,sway var(--du,9s) ease-in-out infinite;opacity:.95}@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}@keyframes sway{0%,100%{margin-left:-10px}50%{margin-left:10px}}.bar{position:absolute;bottom:0;left:0;right:0;text-align:center;padding:6px;background:rgba(0,0,0,.45);font-size:12px}</style></head><body><div id='hearts'></div><header class='wrap'><h1>${esc(title)}</h1></header><main class='wrap'><div class='phone'><div class='phone-screen' id='scr'>${slides}</div><div class='bar'>🎵 Música do YouTube</div></div></main><iframe title='YouTube' width='0' height='0' style='position:absolute;left:-9999px;opacity:0' src='https://www.youtube.com/embed/${id}?autoplay=1&mute=1&playsinline=1&loop=1&playlist=${id}' allow='autoplay; encrypted-media' allowfullscreen></iframe><script>let idx=0;setInterval(()=>{const s=[...document.querySelectorAll('.slide')];if(s.length<2)return; s[idx].classList.remove('show'); idx=(idx+1)%s.length; s[idx].classList.add('show');},5000);const hc=document.getElementById('hearts');function heart(){const e=document.createElement('span');e.className='heart';e.textContent=Math.random()<.5?'💖':'💘';e.style.setProperty('--sz',(14+Math.random()*18)+'px');e.style.setProperty('--du',(7+Math.random()*6)+'s');e.style.left=(Math.random()*100)+'vw';e.style.opacity=0.75+Math.random()*0.25;hc.appendChild(e);setTimeout(()=>e.remove(),14000);}setInterval(heart,260);</script></body></html>`;
+    }
+
+    // Boot
+    renderPreview(); updateMusic(); updateLive();
   </script>
 </body>
 </html>
