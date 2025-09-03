@@ -6,16 +6,68 @@
   <title>Patrícia e Sérgio 💖</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    body{margin:0;background:#0c0a13;color:#fff;font-family:'Inter',sans-serif;text-align:center}
-    h1{margin:20px 0;font-size:24px;font-weight:800;background:linear-gradient(90deg,#9b87ff,#ff77a9);
+    :root{
+      --bg:#0c0a13; --ink:#fff; --muted:#d7d3e3;
+      --a:#ff77a9; --b:#9b87ff;
+      /* máscara em forma de coração (para a transição) */
+      --heart-url:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="white" d="M50 86 L16 52 A20 20 0 1 1 50 28 A20 20 0 1 1 84 52 Z"/></svg>');
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,Arial,sans-serif;text-align:center}
+    h1{margin:20px 0 10px;font-size:26px;font-weight:800;background:linear-gradient(90deg,var(--b),var(--a));
        -webkit-background-clip:text;background-clip:text;color:transparent}
-    .photo{display:block;width:88%;margin:0 auto 20px;border-radius:14px;box-shadow:0 10px 22px rgba(0,0,0,.5)}
-    .section{padding:14px;text-align:left;max-width:600px;margin:0 auto}
-    .section h3{margin:10px 0 8px;font-size:18px}
-    .ytbox iframe{width:100%;height:220px;border:0;border-radius:12px}
+
+    /* MOLDURA ROMÂNTICA */
+    .frame{
+      width:min(680px,92vw);
+      margin:18px auto 8px;
+      padding:16px;
+      border-radius:26px;
+      background:
+        linear-gradient(#111,#111) padding-box,
+        conic-gradient(from 120deg,var(--a),var(--b),var(--a)) border-box;
+      border:3px solid transparent;
+      box-shadow:0 16px 36px rgba(0,0,0,.45), 0 0 40px rgba(255,119,169,.12);
+      position:relative;
+      overflow:hidden;
+    }
+    /* corações decorativos nos cantos */
+    .frame::before,.frame::after{
+      content:"💖"; position:absolute; font-size:22px; opacity:.85; filter:drop-shadow(0 6px 10px rgba(255,66,123,.35));
+    }
+    .frame::before{top:8px;left:10px;transform:rotate(-12deg)}
+    .frame::after{bottom:8px;right:12px;transform:rotate(12deg)}
+
+    .viewport{position:relative; width:100%; aspect-ratio:4/5; border-radius:18px; overflow:hidden; background:radial-gradient(120% 100% at 50% 0, #171626 0%, #0f0e18 60%);}
+    .slide{position:absolute; inset:0; opacity:0; transition:opacity .5s ease}
+    .slide.show{opacity:1}
+    .slide img{width:100%;height:100%;object-fit:cover;display:block; filter:saturate(1.07) contrast(1.03)}
+
+    /* EFEITO CORAÇÃO ABRINDO (revela a imagem) */
+    .slide.enter img{
+      -webkit-mask-image:var(--heart-url);
+              mask-image:var(--heart-url);
+      -webkit-mask-repeat:no-repeat;      mask-repeat:no-repeat;
+      -webkit-mask-position:center;       mask-position:center;
+      -webkit-mask-size:0% 0%;            mask-size:0% 0%;
+      animation:heartOpen 1100ms ease forwards;
+    }
+    @keyframes heartOpen{
+      0%   { -webkit-mask-size:0% 0%;     mask-size:0% 0%;   opacity:.6 }
+      65%  { -webkit-mask-size:140% 140%; mask-size:140% 140% }
+      100% { -webkit-mask-size:200% 200%; mask-size:200% 200%; opacity:1 }
+    }
+
+    /* Seções de texto e vídeo */
+    .section{padding:18px 14px;text-align:left;max-width:min(720px,92vw);margin:0 auto}
+    .section h3{margin:8px 0 10px;font-size:19px}
+    .section p{margin:0;color:var(--muted);line-height:1.7}
+    .ytbox iframe{width:100%;height:230px;border:0;border-radius:14px;box-shadow:0 12px 26px rgba(0,0,0,.45)}
+
+    /* Corações caindo no fundo */
     #hearts{position:fixed;inset:0;pointer-events:none}
-    .heart{position:fixed;top:-10vh;font-size:var(--sz,18px);
-      transform:translateY(-10vh) rotate(0);filter:drop-shadow(0 8px 12px rgba(255,77,109,.25));
+    .heart{position:fixed;top:-10vh;font-size:var(--sz,18px);transform:translateY(-10vh) rotate(0);
+      filter:drop-shadow(0 8px 12px rgba(255,77,109,.25));
       animation:fall var(--du,9s) linear forwards,sway var(--du,9s) ease-in-out infinite;opacity:.95}
     @keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}
     @keyframes sway{0%,100%{margin-left:-10px}50%{margin-left:10px}}
@@ -26,14 +78,15 @@
 
   <h1>Patrícia e Sérgio</h1>
 
-  <!-- FOTO 1 -->
-  <img src="https://github.com/ClenaStore/portaldoamor/blob/main/paste/Imagem%20do%20WhatsApp%20de%202025-09-03%20%C3%A0(s)%2008.53.07_7b693421.jpg?raw=true" alt="Foto 1" class="photo">
-
-  <!-- FOTO 2 -->
-  <img src="https://github.com/ClenaStore/portaldoamor/blob/main/paste/Imagem%20do%20WhatsApp%20de%202025-09-03%20%C3%A0(s)%2008.53.07_d36e8607.jpg?raw=true" alt="Foto 2" class="photo">
-
-  <!-- FOTO 3 -->
-  <img src="https://github.com/ClenaStore/portaldoamor/blob/main/paste/Imagem%20do%20WhatsApp%20de%202025-09-03%20%C3%A0(s)%2008.53.07_455bc491.jpg?raw=true" alt="Foto 3" class="photo">
+  <!-- Galeria com moldura + transição coração -->
+  <div class="frame">
+    <div class="viewport" id="viewport">
+      <!-- As três fotos; a 1ª começa visível -->
+      <div class="slide show"><img src="https://github.com/ClenaStore/portaldoamor/blob/main/paste/Imagem%20do%20WhatsApp%20de%202025-09-03%20%C3%A0(s)%2008.53.07_7b693421.jpg?raw=true" alt="Foto 1"></div>
+      <div class="slide"><img src="https://github.com/ClenaStore/portaldoamor/blob/main/paste/Imagem%20do%20WhatsApp%20de%202025-09-03%20%C3%A0(s)%2008.53.07_d36e8607.jpg?raw=true" alt="Foto 2"></div>
+      <div class="slide"><img src="https://github.com/ClenaStore/portaldoamor/blob/main/paste/Imagem%20do%20WhatsApp%20de%202025-09-03%20%C3%A0(s)%2008.53.07_455bc491.jpg?raw=true" alt="Foto 3"></div>
+    </div>
+  </div>
 
   <div class="section">
     <h3>Nossa mensagem:</h3>
@@ -46,17 +99,29 @@
   <div class="section">
     <h3>Nossa Música:</h3>
     <div class="ytbox">
-      <!-- Use sempre o formato embed + autoplay -->
-      <iframe 
-        src="https://www.youtube.com/embed/5kMZQeDMXyg?autoplay=1&mute=1&playsinline=1&loop=1&playlist=5kMZQeDMXyg" 
-        allow="autoplay; encrypted-media" 
+      <!-- Use sempre o formato EMBED + autoplay/loop/mute -->
+      <iframe
+        src="https://www.youtube.com/embed/5kMZQeDMXyg?autoplay=1&mute=1&playsinline=1&loop=1&playlist=5kMZQeDMXyg"
+        allow="autoplay; encrypted-media"
         allowfullscreen>
       </iframe>
     </div>
   </div>
 
   <script>
-    // corações caindo
+    /* Slider com transição de coração */
+    const slides=[...document.querySelectorAll('.slide')];
+    let i=0;
+    setInterval(()=>{
+      const cur=slides[i];
+      i=(i+1)%slides.length;
+      const nxt=slides[i];
+      cur.classList.remove('show');               // sai
+      nxt.classList.add('show','enter');          // entra com coração
+      setTimeout(()=>nxt.classList.remove('enter'),1200); // limpa classe após animação
+    }, 5200);
+
+    /* Corações caindo de fundo */
     const hc=document.getElementById('hearts');
     function heart(){
       const e=document.createElement('span');
