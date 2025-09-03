@@ -9,165 +9,330 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0a0a0f; --text:#fbf9ff; --muted:#cbc6d8; --line:#232334;
-      --brand1:#ff4d6d; --brand2:#ff99ac; --brand3:#b07cff;
-      --shadow:0 14px 32px rgba(255,77,109,.22);
-      --radius:20px;
+      --bg:#0b0a0f; --bg2:#121219; --card:#171720; --line:#262637;
+      --text:#fbf9ff; --muted:#cbc6d8; --brand1:#ff4d6d; --brand2:#ff99ac; --brand3:#b07cff;
+      --shadow:0 12px 28px rgba(255,77,109,.22); --radius:20px; --maxw:1080px;
     }
     *{box-sizing:border-box}
-    body{margin:0; font-family:'Inter',system-ui,Arial,sans-serif; color:var(--text); background:
-      radial-gradient(1200px 600px at 10% -10%, rgba(255,77,109,.18), transparent 60%),
-      radial-gradient(900px 400px at 110% 10%, rgba(176,124,255,.16), transparent 60%),
-      var(--bg);
-      overflow-x:hidden}
-    h1,h2,h3{margin:0}
-    .wrap{max-width:960px; margin:0 auto; padding:0 20px}
-    header{padding:16px 0; text-align:center; background:linear-gradient(180deg,rgba(255,77,109,.2),transparent); border-bottom:1px solid rgba(255,255,255,.06)}
-    .btn{border:0; border-radius:14px; padding:12px 18px; font-weight:800; cursor:pointer; background:linear-gradient(135deg,var(--brand1),var(--brand2)); box-shadow:var(--shadow); color:#fff}
-    .hero{padding:40px 0; text-align:center}
-    .title{font-size:clamp(28px,8vw,52px); font-weight:800; background:linear-gradient(135deg,var(--brand2),#fff); -webkit-background-clip:text; background-clip:text; color:transparent}
-    .subtitle{color:var(--muted); margin:10px 0 20px}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:'Inter',system-ui,Arial,sans-serif; color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(255,77,109,.18), transparent 60%),
+        radial-gradient(900px 400px at 110% 10%, rgba(176,124,255,.16), transparent 60%),
+        var(--bg);
+      overflow-x:hidden;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px}
 
-    /* PHONE PREVIEW */
-    .phone{margin:0 auto; width:280px; max-width:92vw; border-radius:32px; background:#111; border:1px solid rgba(255,255,255,.1); box-shadow:0 20px 44px rgba(0,0,0,.45); overflow:hidden}
-    .phone-screen{position:relative; aspect-ratio:9/16; overflow:hidden}
+    /* HEADER */
+    header{position:sticky; top:0; z-index:40; backdrop-filter:saturate(160%) blur(8px);
+      background:linear-gradient(180deg, rgba(10,10,15,.92), rgba(10,10,15,.65));
+      border-bottom:1px solid rgba(255,255,255,.06)}
+    .header-inner{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:12px}
+    .brand-badge{width:40px; height:40px; border-radius:14px; background:linear-gradient(135deg,var(--brand1),var(--brand2)); box-shadow:var(--shadow); display:grid; place-items:center}
+    .brand-badge svg{filter:drop-shadow(0 4px 10px rgba(255,77,109,.35))}
+    .brand h1{font-size:18px; margin:0}
+    .btn{border:0; border-radius:14px; padding:12px 18px; font-weight:800; cursor:pointer; transition:.2s transform, .2s box-shadow, .2s background; background:#242432; color:var(--text)}
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:linear-gradient(135deg,var(--brand1),var(--brand2)); box-shadow:var(--shadow)}
 
+    /* HERO */
+    .hero{position:relative; padding:56px 0 32px; overflow:hidden; isolation:isolate}
+    .hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:26px; align-items:center}
+    .eyebrow{font-weight:800; letter-spacing:.12em; color:rgba(255,255,255,.8); text-transform:uppercase; font-size:12px}
+    .title{font-size: clamp(28px, 5.6vw, 56px); line-height:1.04; margin:8px 0 10px; font-weight:800;
+      background:linear-gradient(135deg,var(--brand2),#fff); -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 10px 30px rgba(255,153,172,.14))}
+    .subtitle{color:var(--muted); font-size:clamp(14px, 1.6vw, 18px)}
+    .cta{display:flex; gap:12px; align-items:center; margin-top:16px; flex-wrap:wrap}
+    .note{font-size:12px; color:#bdb7c9}
+
+    /* PHONE PREVIEW (AGORA NO LADO DIREITO, COMO NA PRIMEIRA VERSÃO) */
+    .phone{position:relative; aspect-ratio:9/16; border-radius:36px; background:linear-gradient(160deg,#2a2835,#171622);
+      border:1px solid rgba(255,255,255,.08); box-shadow: 0 30px 60px rgba(0,0,0,.46), 0 15px 38px rgba(255,77,109,.16);
+      overflow:hidden; transform: perspective(900px) rotateY(-10deg) rotateX(2deg)}
+    .phone::after{content:""; position:absolute; inset:0; background:radial-gradient(80% 60% at 50% -10%, rgba(255,77,109,.25), transparent 60%)}
+    .phone-screen{position:absolute; inset:14px; border-radius:26px; background:linear-gradient(180deg,#0e0d14,#161526); overflow:hidden}
+
+    /* MINI-SITE PREVIEW INSIDE PHONE — FOTO NÃO PREENCHE TODA A TELA E TEM LEGENDA EMBAIXO */
+    .preview{position:absolute; inset:0; display:grid; grid-template-rows:auto 1fr auto}
+    .preview .topbar{display:flex; align-items:center; justify-content:center; gap:8px; padding:10px 12px; background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border-bottom:1px solid rgba(255,255,255,.06)}
+    .preview .topbar .dot{width:6px; height:6px; background:linear-gradient(135deg,var(--brand1),var(--brand2)); border-radius:999px; box-shadow:0 0 0 4px rgba(255,77,109,.15)}
+
+    .slider{position:relative; overflow:hidden}
     .slide{position:absolute; inset:0; display:grid; grid-template-rows:1fr auto; gap:8px; padding:14px; opacity:0; transition:opacity .7s ease}
     .slide-inner{display:flex; align-items:center; justify-content:center}
     .slide img{max-width:100%; max-height:72%; border-radius:14px; box-shadow:0 10px 22px rgba(0,0,0,.5); object-fit:contain}
     .caption{display:flex; justify-content:center}
-    .caption span{font-size:14px; color:#fff; background:rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.12); padding:8px 12px; border-radius:10px}
+    .caption span{font-size:13px; color:#fff; background:rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.12); padding:8px 12px; border-radius:10px}
     .slide.show{opacity:1}
 
-    /* NAV */
-    .nav{position:absolute; top:50%; left:0; right:0; transform:translateY(-50%); display:flex; justify-content:space-between; padding:0 6px; pointer-events:none}
-    .nav button{pointer-events:auto; background:rgba(0,0,0,.4); border:1px solid rgba(255,255,255,.18); color:#fff; width:36px; height:36px; border-radius:999px; display:grid; place-items:center; cursor:pointer; backdrop-filter:blur(6px)}
-    .nav button:active{transform:scale(.98)}
-
-    .dots{position:absolute; bottom:46px; left:0; right:0; display:flex; justify-content:center; gap:6px}
-    .dots button{width:7px; height:7px; border-radius:999px; background:rgba(255,255,255,.35); border:0}
-    .dots button.active{background:linear-gradient(135deg,var(--brand2),var(--brand1))}
-
-    .bottombar{position:absolute; bottom:0; left:0; right:0; display:flex; align-items:center; justify-content:center; gap:10px; padding:8px; background:rgba(0,0,0,.5); font-size:13px; border-top:1px solid rgba(255,255,255,.08)}
+    .preview .bottombar{display:flex; align-items:center; justify-content:center; gap:8px; padding:8px 12px; border-top:1px solid rgba(255,255,255,.06); background:linear-gradient(0deg, rgba(255,255,255,.06), rgba(255,255,255,.03))}
     .eq{display:inline-flex; gap:3px; align-items:flex-end; height:14px}
     .eq i{width:3px; height:6px; background:linear-gradient(180deg,var(--brand2),var(--brand1)); border-radius:2px; animation: bounce 900ms ease-in-out infinite}
     .eq i:nth-child(2){animation-delay:.12s} .eq i:nth-child(3){animation-delay:.24s} .eq i:nth-child(4){animation-delay:.36s}
     @keyframes bounce { 0%,100%{ height:4px } 50%{ height:14px } }
 
     .mini-play{position:absolute; right:10px; top:10px; display:flex; align-items:center; gap:8px; font-size:12px; padding:8px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.18); background:rgba(0,0,0,.35); cursor:pointer}
-    .mini-play:active{transform:scale(.98)}
 
-    /* HEARTS */
+    /* FEATS / STEPS / PRICING / FAQ */
+    section{padding:48px 0}
+    h2{font-size:26px; margin:0 0 8px}
+    p.lead{color:var(--muted); margin:0 0 20px}
+
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+    .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:16px; box-shadow:0 10px 26px rgba(0,0,0,.25)}
+    .card h3{margin:0 0 6px}
+    .card p{color:var(--muted)}
+
+    .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:14px}
+    .step{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:16px}
+    .step .n{ width:34px; height:34px; display:grid; place-items:center; border-radius:10px; font-weight:800; background:linear-gradient(135deg,var(--brand1),var(--brand2)); box-shadow:var(--shadow)}
+    .step h4{margin:10px 0 6px}
+
+    .pricing{display:grid; grid-template-columns:1.2fr .8fr; gap:16px}
+    .price-card{background:linear-gradient(160deg, #231f2a, #1a1822); border:1px solid rgba(255,255,255,.06); border-radius:22px; padding:20px; box-shadow:0 30px 60px rgba(255,77,109,.12)}
+    .price{font-size:40px; font-weight:800}
+
+    details{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px 16px}
+    summary{cursor:pointer; font-weight:700}
+    summary::-webkit-details-marker{display:none}
+    details + details{margin-top:10px}
+
+    footer{padding:26px 0 36px; border-top:1px dashed rgba(255,255,255,.08); color:#bdb8c9}
+
+    /* HEARTS (sempre ativos) */
     #hearts-container{position:fixed; inset:0; pointer-events:none; z-index:10}
     .heart{position:fixed; top:-10vh; font-size:var(--size,18px); transform:translateY(-10vh) rotate(0deg); will-change:transform, opacity; filter:drop-shadow(0 8px 12px rgba(255,77,109,.25)); animation: fall var(--dur,9s) linear forwards, sway var(--dur,9s) ease-in-out infinite; opacity:.95}
     @keyframes fall{ to{ transform:translateY(110vh) rotate(360deg); opacity:0 } }
     @keyframes sway{ 0%,100%{ margin-left:-10px } 50%{ margin-left:10px } }
 
-    footer{padding:20px; text-align:center; font-size:13px; color:#aaa}
+    /* MOBILE-FIRST refinements */
+    @media (max-width: 1024px){ .hero-grid{grid-template-columns:1fr; gap:20px} .pricing{grid-template-columns:1fr} .steps{grid-template-columns:1fr 1fr} }
+    @media (max-width: 560px){
+      header .btn{padding:10px 14px}
+      .grid-3{grid-template-columns:1fr}
+      .steps{grid-template-columns:1fr}
+      .hero{padding:32px 0 14px}
+      .title{font-size: clamp(28px, 9vw, 44px)}
+      .subtitle{font-size: 15px}
+      .phone{transform:none; border-radius:28px}
+      .phone-screen{inset:10px; border-radius:20px}
+    }
   </style>
 </head>
 <body>
-  <div id="hearts-container"></div>
+  <!-- HEARTS LAYER (sempre ativo) -->
+  <div id="hearts-container" aria-hidden="true"></div>
+
   <header>
-    <h1>Amor em Códigos</h1>
+    <div class="wrap header-inner">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 21s-7.5-4.35-9.75-8.4C.96 9.85 2.2 6 5.7 6 8.1 6 9.43 7.6 12 9.75 14.57 7.6 15.9 6 18.3 6c3.5 0 4.74 3.85 3.45 6.6C19.5 16.65 12 21 12 21Z"/></svg>
+        </div>
+        <h1>Amor em Códigos</h1>
+      </div>
+      <button id="cta-top" class="btn btn-primary">Criar Mini Site</button>
+    </div>
   </header>
 
   <main>
-    <section class="hero wrap">
-      <h2 class="title">Seu Mini Site do Amor 💘</h2>
-      <p class="subtitle">Fotos especiais com mensagens embaixo e música de fundo</p>
-      <div class="phone" aria-label="Prévia do mini site no celular">
-        <div class="phone-screen" id="slider" aria-live="polite">
-          <!-- SLIDES -->
-          <div class="slide show" data-cap="Primeiro encontro ✨">
-            <div class="slide-inner">
-              <img loading="lazy" src="https://images.unsplash.com/photo-1520962918287-7448c2878f65?q=80&w=600&auto=format&fit=crop" alt="Foto 1"/>
+    <!-- HERO com preview no lado direito -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Dia dos Namorados</div>
+          <h2 class="title">Surpreenda o seu amor com um mini site inesquecível 💘</h2>
+          <p class="subtitle">Personalize com fotos, mensagens (exibidas logo abaixo de cada foto) e música — e entregue por link ou QR Code.</p>
+          <div class="cta">
+            <button id="cta" class="btn btn-primary">Criar Agora</button>
+            <a class="btn" href="#como-funciona">Como funciona</a>
+          </div>
+          <div class="note">Edição simples • Visual profissional • Compartilhe em segundos</div>
+        </div>
+        <!-- PHONE PREVIEW, mantido no lado direito -->
+        <div class="phone" aria-label="Prévia do mini site no celular">
+          <div class="phone-screen">
+            <div class="preview">
+              <div class="topbar"><span class="dot"></span> <strong style="font-size:12px">Mini Site do Amor</strong></div>
+              <div class="slider" id="slider">
+                <!-- Slides (substitua as imagens pelas do casal) -->
+                <div class="slide show" data-cap="Primeiro encontro ✨">
+                  <div class="slide-inner">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1520962918287-7448c2878f65?q=80&w=1200&auto=format&fit=crop" alt="Foto 1"/>
+                  </div>
+                  <div class="caption"><span>Primeiro encontro ✨</span></div>
+                </div>
+                <div class="slide" data-cap="Nossas viagens 💞">
+                  <div class="slide-inner">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?q=80&w=1200&auto=format&fit=crop" alt="Foto 2"/>
+                  </div>
+                  <div class="caption"><span>Nossas viagens 💞</span></div>
+                </div>
+                <div class="slide" data-cap="Para sempre nós dois 💍">
+                  <div class="slide-inner">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?q=80&w=1200&auto=format&fit=crop" alt="Foto 3"/>
+                  </div>
+                  <div class="caption"><span>Para sempre nós dois 💍</span></div>
+                </div>
+              </div>
+              <button class="mini-play" id="miniPlay" title="Tocar música do casal">▶︎ Música</button>
+              <div class="bottombar">
+                <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                <small style="opacity:.9">Música do casal</small>
+              </div>
+              <audio id="track" src="https://cdn.pixabay.com/download/audio/2022/03/22/audio_3a3b9a86ac.mp3?filename=in-love-50-14134.mp3" autoplay loop playsinline></audio>
             </div>
-            <div class="caption"><span>Primeiro encontro ✨</span></div>
           </div>
-          <div class="slide" data-cap="Nossas viagens 💞">
-            <div class="slide-inner">
-              <img loading="lazy" src="https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?q=80&w=600&auto=format&fit=crop" alt="Foto 2"/>
-            </div>
-            <div class="caption"><span>Nossas viagens 💞</span></div>
-          </div>
-          <div class="slide" data-cap="Para sempre nós dois 💍">
-            <div class="slide-inner">
-              <img loading="lazy" src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?q=80&w=600&auto=format&fit=crop" alt="Foto 3"/>
-            </div>
-            <div class="caption"><span>Para sempre nós dois 💍</span></div>
-          </div>
-
-          <!-- NAVIGATION -->
-          <div class="nav" aria-hidden="false">
-            <button id="prev" aria-label="Foto anterior">‹</button>
-            <button id="next" aria-label="Próxima foto">›</button>
-          </div>
-          <div class="dots" id="dots"></div>
-
-          <!-- CONTROLES -->
-          <button class="mini-play" id="miniPlay" title="Tocar/Pausar música">▶︎ Música</button>
-          <div class="bottombar">
-            <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-            <small style="opacity:.9">Música do casal</small>
-          </div>
-          <audio id="track" src="https://cdn.pixabay.com/download/audio/2022/03/22/audio_3a3b9a86ac.mp3?filename=in-love-50-14134.mp3" autoplay loop playsinline></audio>
         </div>
       </div>
-      <div style="margin-top:20px"><button class="btn">Criar Agora</button></div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="wrap">
+      <h2>Feito para encantar</h2>
+      <p class="lead">Layout romântico, animações suaves e detalhes que brilham — perfeito para o seu Dia dos Namorados.</p>
+      <div class="grid-3">
+        <div class="card"><h3>💜 Design Personalizado</h3><p>Escolha cores, fontes e capa. O visual que combina com a história de vocês.</p></div>
+        <div class="card"><h3>🔗 Link & QR Code</h3><p>Compartilhe facilmente por link ou entregue um QR Code surpresa.</p></div>
+        <div class="card"><h3>🎵 Trilha do casal</h3><p>Defina a música que marca o relacionamento e torne o momento inesquecível.</p></div>
+      </div>
+    </section>
+
+    <!-- COMO FUNCIONA / STEPS -->
+    <section id="como-funciona" class="wrap">
+      <h2>Em 4 passos</h2>
+      <p class="lead">Crie, pague e receba seu mini site — tudo em minutos.</p>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><h4>Personalize</h4><p>Fotos, mensagem e música.</p></div>
+        <div class="step"><div class="n">2</div><h4>Pagamento</h4><p>Processo simples e seguro.</p></div>
+        <div class="step"><div class="n">3</div><h4>Receba o acesso</h4><p>Link e QR Code no seu e‑mail.</p></div>
+        <div class="step"><div class="n">4</div><h4>Compartilhe</h4><p>Entregue a surpresa e emocione 💞</p></div>
+      </div>
+    </section>
+
+    <!-- PRICING / BENEFITS -->
+    <section class="wrap">
+      <div class="pricing">
+        <div class="price-card">
+          <h3 style="margin:0 0 8px">Tudo que você recebe</h3>
+          <ul class="ul" style="display:grid; gap:10px; margin:18px 0; padding-left:18px">
+            <li>💖 Página personalizada e responsiva</li>
+            <li>💖 Tema especial de Dia dos Namorados</li>
+            <li>💖 QR Code e Link de acesso rápido</li>
+            <li>💖 Até 7 fotos + 1 música</li>
+            <li>💖 1 ano de acesso</li>
+            <li>🛡️ Privacidade e qualidade garantidas</li>
+          </ul>
+          <div class="btn" style="display:inline-block">Oferta de temporada</div>
+        </div>
+        <div class="card" style="display:grid; align-content:center">
+          <div style="opacity:.85">a partir de</div>
+          <div class="price">R$ 25,00</div>
+          <div style="opacity:.85">pagamento único</div>
+          <div style="height:10px"></div>
+          <button class="btn btn-primary" id="cta-pricing">Quero criar agora</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="wrap">
+      <h2>Perguntas frequentes</h2>
+      <details>
+        <summary>O que é o Mini Site do Amor?</summary>
+        <p>É uma página personalizada com fotos, mensagem (exibida logo abaixo de cada foto) e música para celebrar o relacionamento e surpreender quem você ama.</p>
+      </details>
+      <details>
+        <summary>Consigo editar depois de pronto?</summary>
+        <p>Você poderá solicitar ajustes antes de compartilhar o link final. Combine conosco a melhor forma de atualização.</p>
+      </details>
+      <details>
+        <summary>Como entrego a surpresa?</summary>
+        <p>Você recebe um link e um QR Code. Envie por mensagem ou entregue impresso com um presente.</p>
+      </details>
     </section>
   </main>
 
   <footer>
-    © <span id="year"></span> Amor em Códigos — Dia dos Namorados
+    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap">
+      <div>© <span id="year"></span> Amor em Códigos — Dia dos Namorados</div>
+      <div style="display:flex; gap:12px; align-items:center">
+        <a class="btn" href="#">Termos</a>
+        <a class="btn" href="#">Privacidade</a>
+      </div>
+    </div>
   </footer>
 
   <script>
-    // Hearts (sempre ativos)
-    const heartsContainer=document.getElementById('hearts-container');
+    const $ = (s, ctx=document) => ctx.querySelector(s);
+    const $$ = (s, ctx=document) => [...ctx.querySelectorAll(s)];
+
+    // ===== hearts (sempre ativos) =====
+    const heartsContainer = document.getElementById('hearts-container');
     function spawnHeart(){
-      const el=document.createElement('span'); el.className='heart'; el.textContent=Math.random()<.5?'💖':'💘';
-      const size=14+Math.random()*20, dur=7+Math.random()*6, left=Math.random()*100;
-      el.style.setProperty('--size',size+'px'); el.style.setProperty('--dur',dur+'s'); el.style.left=left+'vw'; el.style.opacity=0.75+Math.random()*0.25;
-      heartsContainer.appendChild(el); setTimeout(()=>el.remove(),dur*1000);
+      const el = document.createElement('span');
+      el.className = 'heart';
+      el.textContent = Math.random() < .5 ? '💖' : '💘';
+      const size = 14 + Math.random()*20;       // 14–34px
+      const dur  = 7 + Math.random()*6;         // 7–13s
+      const left = Math.random()*100;           // 0–100vw
+      el.style.setProperty('--size', size+'px');
+      el.style.setProperty('--dur',  dur+'s');
+      el.style.left = left + 'vw';
+      el.style.opacity = 0.75 + Math.random()*0.25;
+      heartsContainer.appendChild(el);
+      setTimeout(()=> el.remove(), dur*1000);
     }
-    setInterval(spawnHeart,220);
+    setInterval(spawnHeart, 200);
 
-    // Slider Completo: prev/next, dots, autoplay, swipe
-    const slider=document.getElementById('slider');
-    const slides=[...slider.querySelectorAll('.slide')];
-    const dotsWrap=document.getElementById('dots');
-    slides.forEach((_,i)=>{ const b=document.createElement('button'); b.setAttribute('aria-label','Ir para slide '+(i+1)); b.addEventListener('click',()=>go(i,true)); dotsWrap.appendChild(b); });
-    const dots=[...dotsWrap.children];
+    // ===== CTA confetti hearts + scroll =====
+    function burstHearts(x, y){
+      const N = 28 + Math.floor(Math.random()*12);
+      for(let i=0;i<N;i++){
+        const el = document.createElement('span');
+        el.textContent = Math.random() < .5 ? '💖' : '💘';
+        el.style.position='fixed'; el.style.left=x+'px'; el.style.top=y+'px';
+        el.style.fontSize = (14+Math.random()*14)+'px';
+        el.style.pointerEvents='none'; el.style.zIndex=20; el.style.filter='drop-shadow(0 6px 10px rgba(255,77,109,.35))';
+        document.body.appendChild(el);
+        const angle = Math.random()*Math.PI*2; const speed = 2 + Math.random()*5; const decay = 0.96 + Math.random()*0.02;
+        let vx = Math.cos(angle)*speed; let vy = Math.sin(angle)*speed - 1; let op=1; let t=0;
+        const anim = () =>{ t++; vx*=decay; vy=(vy+0.08)*decay; x+=vx*2; y+=vy*2; el.style.transform = `translate(${x}px, ${y}px) rotate(${t*8}deg)`; el.style.opacity = op; op-=0.012; if(op<=0){ el.remove(); return; } requestAnimationFrame(anim); };
+        requestAnimationFrame(anim);
+      }
+    }
+    function ctaAction(evt){
+      const rect = evt.currentTarget.getBoundingClientRect();
+      const x = rect.left + rect.width/2; const y = rect.top + window.scrollY + rect.height/2;
+      burstHearts(x, y);
+      document.querySelector('#como-funciona')?.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    $('#cta')?.addEventListener('click', ctaAction);
+    $('#cta-top')?.addEventListener('click', ctaAction);
+    $('#cta-pricing')?.addEventListener('click', ctaAction);
 
-    let idx=0, timer=null, autoDelay=5000;
-    function show(i){ slides.forEach((s,j)=> s.classList.toggle('show', j===i)); dots.forEach((d,j)=> d.classList.toggle('active', j===i)); }
-    function go(i,manual=false){ idx=(i+slides.length)%slides.length; show(idx); if(manual) restartAuto(); }
-    function next(){ go(idx+1); }
-    function prev(){ go(idx-1); }
-    function startAuto(){ timer=setInterval(next, autoDelay); }
-    function stopAuto(){ clearInterval(timer); timer=null; }
-    function restartAuto(){ stopAuto(); startAuto(); }
+    // ===== mini-site slider (prévia dentro do celular) =====
+    const slides = $$('#slider .slide');
+    let idx = 0;
+    setInterval(()=>{
+      slides[idx].classList.remove('show');
+      idx = (idx + 1) % slides.length;
+      slides[idx].classList.add('show');
+    }, 4500);
 
-    document.getElementById('next').addEventListener('click', ()=>{ next(); });
-    document.getElementById('prev').addEventListener('click', ()=>{ prev(); });
-
-    // Swipe para mobile
-    let startX=null, startY=null;
-    slider.addEventListener('touchstart',e=>{ const t=e.touches[0]; startX=t.clientX; startY=t.clientY; stopAuto(); },{passive:true});
-    slider.addEventListener('touchend',e=>{ if(startX===null) return; const t=e.changedTouches[0]; const dx=t.clientX-startX; const dy=t.clientY-startY; if(Math.abs(dx)>40 && Math.abs(dx)>Math.abs(dy)){ dx<0?next():prev(); } startX=startY=null; restartAuto(); },{passive:true});
-
-    // Teclado (acessibilidade)
-    window.addEventListener('keydown', e=>{ if(e.key==='ArrowRight') next(); if(e.key==='ArrowLeft') prev(); });
-
-    // Música de fundo
-    const audio=document.getElementById('track');
-    const miniPlay=document.getElementById('miniPlay');
-    function tryPlay(){ audio.volume=.7; audio.play().catch(()=>{}); }
-    window.addEventListener('load', ()=>{ tryPlay(); startAuto(); show(0); dots[0]?.classList.add('active'); });
+    // ===== música de fundo =====
+    const audio = $('#track');
+    const miniPlay = $('#miniPlay');
+    function tryPlay(){ audio.volume = 0.7; audio.play().catch(()=>{}); }
+    window.addEventListener('load', tryPlay);
     miniPlay.addEventListener('click', ()=>{ if(audio.paused){ audio.play(); miniPlay.textContent='⏸︎ Pausar'; } else { audio.pause(); miniPlay.textContent='▶︎ Música'; } });
 
-    document.getElementById('year').textContent=new Date().getFullYear();
+    // misc
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
